@@ -1,0 +1,13 @@
+medcart-platform/
+│
+├── README.md
+├── docker-compose.yml
+├── .env.example
+├── .gitignore
+│
+├── frontend/              # Next.js App
+├── backend/               # Node.js (Express)
+├── database/              # SQL schema
+├── ai-engine/             # Future AI
+├── docs/                  # Documentation
+└── infra/                 # Deployment configs
