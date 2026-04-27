@@ -1,0 +1,6 @@
+backend/src/routes/
+├── index.js
+├── auth.routes.js
+├── product.routes.js
+├── doctor.routes.js
+├── order.routes.js
