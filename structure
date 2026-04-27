@@ -1,0 +1,5 @@
+git init
+git remote add origin <repo_url>
+git add .
+git commit -m "Initial architecture"
+git push origin main
