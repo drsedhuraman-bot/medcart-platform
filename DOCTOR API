@@ -1,0 +1,22 @@
+import express from "express";
+import pool from "../config/db.js";
+
+const router = express.Router();
+
+router.get("/", async (req, res) => {
+  const doctors = await pool.query("SELECT * FROM doctors");
+  res.json(doctors.rows);
+});
+
+router.post("/", async (req, res) => {
+  const { name, specialization, experience } = req.body;
+
+  await pool.query(
+    "INSERT INTO doctors(name,specialization,experience) VALUES($1,$2,$3)",
+    [name, specialization, experience]
+  );
+
+  res.json({ message: "Doctor added" });
+});
+
+export default router;
