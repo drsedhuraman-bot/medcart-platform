@@ -1,0 +1,25 @@
+import express from "express";
+import pool from "../config/db.js";
+import { authMiddleware } from "../middleware/auth.js";
+
+const router = express.Router();
+
+router.post("/", authMiddleware, async (req, res) => {
+  const { items, total } = req.body;
+
+  const order = await pool.query(
+    "INSERT INTO orders(user_id,total,status) VALUES($1,$2,$3) RETURNING *",
+    [req.user.id, total, "pending"]
+  );
+
+  for (let item of items) {
+    await pool.query(
+      "INSERT INTO order_items(order_id,product_id,quantity,price) VALUES($1,$2,$3,$4)",
+      [order.rows[0].id, item.product_id, item.quantity, item.price]
+    );
+  }
+
+  res.json({ message: "Order placed" });
+});
+
+export default router;
