@@ -1,0 +1,4 @@
+ai-engine/
+├── recommendation.py   # medicine suggestion
+├── symptom_checker.py
+├── pricing_model.py
